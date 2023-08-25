@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather project</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="Weather-container">
+        <header>
+          <ul class="city-favorites">
+            <li class="item-city-favorites" id="kyiv"><a href="#">Kyiv</a></li>
+            <li class="item-city-favorites" id="paris">
+              <a href="#">Paris</a>
+            </li>
+            <li class="item-city-favorites" id="sydney">
+              <a href="#">Sydney</a>
+            </li>
+            <li class="item-city-favorites" id="newYork">
+              <a href="#">New York</a>
+            </li>
+          </ul>
+        </header>
+        <main>
+          <form class="form-input">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  type="search"
+                  placeholder="Enter a city"
+                  autofocus="on"
+                  autocomplete="off"
+                  id="city-input"
+                  class="form-control shadow-sm"
+                  required
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  class="btn btn-primary shadow-sm w-100"
+                  value="Search"
+                />
+              </div>
+              <div class="col-3">
+                <button
+                  type="button"
+                  class="btn btn-success shadow-sm w-100"
+                  id="current-location-button"
+                >
+                  Current
+                </button>
+              </div>
+            </div>
+          </form>
+          <div>
+            <h1>Kyiv</h1>
+            <ul>
+              <li id="input-time">Monday 19:20</li>
+              <li id="description">Rainy</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 item-temperature">
+              <img
+                class="weather-icon"
+                src="./images/rainy_FILL0_wght400_GRAD0_opsz48.svg"
+                alt="rainy"
+                sizes="20"
+              />
+              <span class="temperature" id="setTempValue">22</span>
+              <a class="type-temperatyre" href="#">°C</a>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li>Humidity : <span id="humidity"></span>%</li>
+                <li>Clouds : <span id="clouds"></span>%</li>
+                <li id="wind">Wind: 2km/h</li>
+              </ul>
+            </div>
+          </div>
+
+          <section class="weather-current">
+            <div class="row weather-week">
+              <div class="col-2">
+                <div class="main-text">Tue</div>
+                <img
+                  src="./images/rainy_FILL0_wght400_GRAD0_opsz48.svg"
+                  alt="Rainy"
+                  sizes="20"
+                />
+                <div class="main-text">22°</div>
+              </div>
+              <div class="col-2">
+                <div class="main-text">Wed</div>
+                <img
+                  src="./images/cloud_FILL0_wght400_GRAD0_opsz48.svg"
+                  alt="cloud"
+                  sizes="20"
+                />
+                <div class="main-text">24°</div>
+              </div>
+              <div class="col-2">
+                <div class="main-text">Thu</div>
+                <img
+                  src="./images/partly_cloudy_day_FILL0_wght400_GRAD0_opsz48.svg"
+                  alt="partly_cloudy"
+                  sizes="20"
+                />
+                <div class="main-text">26°</div>
+              </div>
+              <div class="col-2">
+                <div class="main-text">Fri</div>
+                <img
+                  src="./images/sunny_FILL0_wght400_GRAD0_opsz48.svg"
+                  alt="sunny"
+                  sizes="20"
+                />
+                <div class="main-text">28°</div>
+              </div>
+              <div class="col-2">
+                <div class="main-text">Sat</div>
+                <img
+                  src="./images/thunderstorm_FILL0_wght400_GRAD0_opsz48.svg"
+                  alt="thunderstorm"
+                  sizes="20"
+                />
+                <div class="main-text">26°</div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+      <footer>
+        <p class="footer">
+          This page was built by
+          <a
+            href="https://www.shecodes.io/graduates/93245-tetiana-butok"
+            target="_blank"
+          >
+            👩‍💻 TETIANA BUTOK</a
+          >
+        </p>
+      </footer>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
