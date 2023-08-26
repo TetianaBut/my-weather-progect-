@@ -14,7 +14,7 @@ function displaytDate() {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
 
   let months = [
@@ -29,7 +29,7 @@ function displaytDate() {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
   if (hours < 10) {
     hours = `0${hours}`;
@@ -43,19 +43,19 @@ function displaytDate() {
   console.log(`${months[month]} ${date}, ${year}`);
 }
 
-// type-temperatyre
+// units
 function setTypeTemperature(event) {
   event.preventDefault();
   let unitWind = "";
   if (metric) {
     currentTemp = (currentTemp * 9) / 5 + 32;
-    document.querySelector(".type-temperatyre").innerHTML = "°F";
+    document.querySelector("#units").innerHTML = "°F";
     currentWind = currentWind * 2.23694;
     unitWind = "miles/h";
     metric = false;
   } else {
     currentTemp = ((currentTemp - 32) * 5) / 9;
-    document.querySelector(".type-temperatyre").innerHTML = `°C`;
+    document.querySelector("#units").innerHTML = `°C`;
     currentWind = currentWind * 0.44704;
     unitWind = "m/sec";
     metric = true;
@@ -140,7 +140,7 @@ let metric = true;
 let city = "kyiv";
 retrieveDataWeather(`q=${city}`);
 // unit = metric/iperial
-let setTempValue = document.querySelector(".type-temperatyre");
+let setTempValue = document.querySelector("#units");
 setTempValue.addEventListener("click", setTypeTemperature);
 
 // searchCityName
