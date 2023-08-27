@@ -1,12 +1,11 @@
 // input now  Date
 function displaytDate() {
   let nowDate = new Date();
+  // console.log(nowDate);
   let hours = nowDate.getHours();
   let minutes = nowDate.getMinutes();
   let day = nowDate.getDay();
-  let date = nowDate.getDate();
-  let month = nowDate.getMonth();
-  let year = nowDate.getFullYear();
+
   let days = [
     "Sunday",
     "Monday",
@@ -16,32 +15,37 @@ function displaytDate() {
     "Friday",
     "Saturday",
   ];
-
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   if (hours < 10) {
     hours = `0${hours}`;
   }
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  document.querySelector(
-    "#input-time"
-  ).innerHTML = `${days[day]}  ${hours}:${minutes}`;
-  console.log(`${months[month]} ${date}, ${year}`);
+  return `${days[day]}  ${hours}:${minutes}`;
 }
+// let date = nowDate.getDate();
+// let month = nowDate.getMonth();
+// let year = nowDate.getFullYear();
+// let months = [
+//   "January",
+//   "February",
+//   "March",
+//   "April",
+//   "May",
+//   "June",
+//   "July",
+//   "August",
+//   "September",
+//   "October",
+//   "November",
+//   "December",
+// ];
+
+// document.querySelector(
+//   "#input-time"
+// ).innerHTML = `${days[day]}  ${hours}:${minutes}`;
+// console.log(`${months[month]} ${date}, ${year}`);
+// }
 
 // units
 function setUnitTemperature(event) {
@@ -71,6 +75,9 @@ function setUnitTemperature(event) {
 function displayWeatherCondition(response) {
   // console.log(axios);
   console.log(response.data);
+
+  // console.log(response.data.dt * 1000);
+  let dateElement = document.querySelector("#input-time");
   document.querySelector(
     "h1"
   ).innerHTML = `${response.data.name} ${response.data.sys.country}`;
@@ -90,13 +97,14 @@ function displayWeatherCondition(response) {
   document.querySelector("#wind").innerHTML = ` ${Math.round(
     currentWind
   )}m/sec`;
+  // dateElement.innerHTML = displaytDate(response.data.dt * 1000);
+  dateElement.innerHTML = displaytDate();
 }
 function retrieveDataWeather(cityName) {
   metric = true;
   let apiKey = "36eeef5b0cb8b4f4de85392d5b87261c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${cityName}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
-  displaytDate();
 }
 
 // search  City  Name
