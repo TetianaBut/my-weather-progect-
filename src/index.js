@@ -61,14 +61,14 @@ function setUnitTemperature(event) {
     currentTemp = ((currentTemp - 32) * 5) / 9;
     document.querySelector("#units").innerHTML = `°C`;
     currentWind = currentWind * 0.44704;
-    unitWind = "m/sec";
+    unitWind = "km/h";
     metric = true;
   }
 
   document.querySelector("#setTempValue").innerHTML = `${Math.round(
     currentTemp
   )}`;
-  document.querySelector("#wind").innerHTML = `Wind : ${Math.round(
+  document.querySelector("#wind").innerHTML = ` ${Math.round(
     currentWind
   )}${unitWind}`;
 }
@@ -94,14 +94,13 @@ function displayWeatherCondition(response) {
     "#humidity"
   ).innerHTML = ` ${response.data.main.humidity}`;
   currentWind = response.data.wind.speed;
-  document.querySelector("#wind").innerHTML = ` ${Math.round(
-    currentWind
-  )}m/sec`;
+  document.querySelector("#wind").innerHTML = ` ${Math.round(currentWind)}km/h`;
   // dateElement.innerHTML = displaytDate(response.data.dt * 1000);
   dateElement.innerHTML = displaytDate();
 }
 function retrieveDataWeather(cityName) {
   metric = true;
+  document.querySelector("#units").innerHTML = `°C`;
   let apiKey = "36eeef5b0cb8b4f4de85392d5b87261c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${cityName}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
