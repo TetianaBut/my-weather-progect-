@@ -44,7 +44,7 @@ function displaytDate() {
 }
 
 // units
-function setTypeTemperature(event) {
+function setUnitTemperature(event) {
   event.preventDefault();
   let unitWind = "";
   if (metric) {
@@ -74,20 +74,20 @@ function displayWeatherCondition(response) {
   document.querySelector(
     "h1"
   ).innerHTML = `${response.data.name} ${response.data.sys.country}`;
-  // console.log(response.data.weather[0].description);
+  // console.log(response.data.weather[0].main;
   document.querySelector(
     "#description"
-  ).innerHTML = `${response.data.weather[0].main}`;
+  ).innerHTML = `${response.data.weather[0].description}`;
   currentTemp = response.data.main.temp;
   document.querySelector("#setTempValue").innerHTML = `${Math.round(
     currentTemp
   )}`;
+  document.querySelector("#clouds").innerHTML = ` ${response.data.clouds.all}`;
   document.querySelector(
     "#humidity"
   ).innerHTML = ` ${response.data.main.humidity}`;
-  document.querySelector("#clouds").innerHTML = ` ${response.data.clouds.all}`;
   currentWind = response.data.wind.speed;
-  document.querySelector("#wind").innerHTML = `Wind : ${Math.round(
+  document.querySelector("#wind").innerHTML = ` ${Math.round(
     currentWind
   )}m/sec`;
 }
@@ -141,7 +141,7 @@ let city = "kyiv";
 retrieveDataWeather(`q=${city}`);
 // unit = metric/iperial
 let setTempValue = document.querySelector("#units");
-setTempValue.addEventListener("click", setTypeTemperature);
+setTempValue.addEventListener("click", setUnitTemperature);
 
 // searchCityName
 let cityInput = document.querySelector(".form-input");
