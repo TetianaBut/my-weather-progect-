@@ -78,14 +78,19 @@ function displayWeatherCondition(response) {
 
   // console.log(response.data.dt * 1000);
   let dateElement = document.querySelector("#input-time");
+  let iconElement = document.querySelector("#weather-icon");
   document.querySelector(
     "h1"
   ).innerHTML = `${response.data.name} ${response.data.sys.country}`;
-  // console.log(response.data.weather[0].main;
   document.querySelector(
     "#description"
   ).innerHTML = `${response.data.weather[0].description}`;
   currentTemp = response.data.main.temp;
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", `${response.data.weather[0].description}`);
   document.querySelector("#setTempValue").innerHTML = `${Math.round(
     currentTemp
   )}`;

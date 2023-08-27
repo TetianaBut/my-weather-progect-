@@ -20,6 +20,9 @@ li {
   list-style: none;
   text-transform: capitalize;
 }
+li span {
+  text-transform: lowercase;
+}
 a {
   color: rgb(89, 121, 246);
   text-decoration: none;
@@ -51,9 +54,10 @@ a:hover {
 .Weather-temperature img {
   height: 64px;
   width: 64px;
-  margin-right: 10px;
   position: relative;
-  top: -10px;
+  top: -20px;
+  right: -10px;
+  margin-left: -20px;
 }
 .Weather-temperature strong {
   color: rgb(33, 33, 33);
