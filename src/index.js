@@ -47,24 +47,22 @@ function displaytDate() {
 // console.log(`${months[month]} ${date}, ${year}`);
 // }
 
-// units
+// set Unit Temperature
 function setUnitTemperature(event) {
   event.preventDefault();
-  let unitWind = "";
-  if (metric) {
+  if (unit === "metric") {
     currentTemp = (currentTemp * 9) / 5 + 32;
     document.querySelector("#units").innerHTML = "°F";
-    currentWind = currentWind * 2.23694;
+    currentWind = currentWind * 0.621371;
     unitWind = "miles/h";
-    metric = false;
+    unit = "imperial";
   } else {
     currentTemp = ((currentTemp - 32) * 5) / 9;
     document.querySelector("#units").innerHTML = `°C`;
-    currentWind = currentWind * 0.44704;
+    currentWind = currentWind * 1.60934;
     unitWind = "km/h";
-    metric = true;
+    unit = "metric";
   }
-
   document.querySelector("#setTempValue").innerHTML = `${Math.round(
     currentTemp
   )}`;
@@ -74,40 +72,36 @@ function setUnitTemperature(event) {
 }
 function displayWeatherCondition(response) {
   // console.log(axios);
-  console.log(response.data);
-
-  // console.log(response.data.dt * 1000);
-  let dateElement = document.querySelector("#input-time");
-  let iconElement = document.querySelector("#weather-icon");
-  document.querySelector(
-    "h1"
-  ).innerHTML = `${response.data.name} ${response.data.sys.country}`;
-  document.querySelector(
-    "#description"
-  ).innerHTML = `${response.data.weather[0].description}`;
-  currentTemp = response.data.main.temp;
-  iconElement.setAttribute(
+  // console.log(response.data);
+  let displayCity = document.querySelector("h1");
+  let displayDate = document.querySelector("#input-time");
+  let displayIcons = document.querySelector("#weather-icon");
+  let displayTemp = document.querySelector("#setTempValue");
+  let displayDescript = document.querySelector("#description");
+  let displayClouds = document.querySelector("#clouds");
+  let displayHumidity = document.querySelector("#humidity");
+  let displayWind = document.querySelector("#wind");
+  displayCity.innerHTML = `${response.data.name} ${response.data.sys.country}`;
+  displayDate.innerHTML = displaytDate();
+  displayDescript.innerHTML = `${response.data.weather[0].description}`;
+  displayIcons.setAttribute(
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  iconElement.setAttribute("alt", `${response.data.weather[0].description}`);
-  document.querySelector("#setTempValue").innerHTML = `${Math.round(
-    currentTemp
-  )}`;
-  document.querySelector("#clouds").innerHTML = ` ${response.data.clouds.all}`;
-  document.querySelector(
-    "#humidity"
-  ).innerHTML = ` ${response.data.main.humidity}`;
+  displayIcons.setAttribute("alt", `${response.data.weather[0].description}`);
+  currentTemp = response.data.main.temp;
+  displayTemp.innerHTML = `${Math.round(currentTemp)}`;
+  displayClouds.innerHTML = ` ${response.data.clouds.all}`;
+  displayHumidity.innerHTML = ` ${response.data.main.humidity}`;
   currentWind = response.data.wind.speed;
-  document.querySelector("#wind").innerHTML = ` ${Math.round(currentWind)}km/h`;
-  // dateElement.innerHTML = displaytDate(response.data.dt * 1000);
-  dateElement.innerHTML = displaytDate();
+  if (unit === "metric") {
+    currentWind = currentWind * 3.6;
+  }
+  displayWind.innerHTML = ` ${Math.round(currentWind)}${unitWind}`;
 }
 function retrieveDataWeather(cityName) {
-  metric = true;
-  document.querySelector("#units").innerHTML = `°C`;
   let apiKey = "36eeef5b0cb8b4f4de85392d5b87261c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${cityName}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${cityName}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -115,7 +109,6 @@ function retrieveDataWeather(cityName) {
 function searchCityName(event) {
   event.preventDefault();
   let inputCityName = document.querySelector("#city-input").value;
-  inputCityName = inputCityName.trim();
   retrieveDataWeather(`q=${inputCityName}`);
 }
 // current City Name
@@ -127,37 +120,37 @@ function currentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(retrievePosition);
 }
+
+// start
+let currentTemp = 0;
+let currentWind = 0;
+let unit = "metric";
+let unitWind = "km/h";
+retrieveDataWeather("q=kyiv");
+// set Unit Temperature
+let setTempValue = document.querySelector("#units");
+setTempValue.addEventListener("click", setUnitTemperature);
+// search City Name
+let cityInput = document.querySelector("#form-input");
+cityInput.addEventListener("submit", searchCityName);
+// current City Name
+let currentCity = document.querySelector("#current-location-button");
+currentCity.addEventListener("click", currentLocation);
+
 // favorite navigator
-let favoriteCity = ["Kyiv", "Paris", "Sydney", "New York"];
 function nameCityKyiv() {
-  retrieveDataWeather(`q=${favoriteCity[0]}`);
+  retrieveDataWeather(`q=${document.querySelector("#kyiv").textContent}`);
 }
 function nameCityParis() {
-  retrieveDataWeather(`q=${favoriteCity[1]}`);
+  retrieveDataWeather(`q=${document.querySelector("#paris").textContent}`);
 }
 function nameCitySydney() {
-  retrieveDataWeather(`q=${favoriteCity[2]}`);
+  retrieveDataWeather(`q=${document.querySelector("#sydney").textContent}`);
 }
 function nameCityNewYork() {
-  retrieveDataWeather(`q=${favoriteCity[3]}`);
+  retrieveDataWeather(`q=${document.querySelector("#newYork").textContent}`);
 }
 document.querySelector("#kyiv").addEventListener("click", nameCityKyiv);
 document.querySelector("#paris").addEventListener("click", nameCityParis);
 document.querySelector("#sydney").addEventListener("click", nameCitySydney);
 document.querySelector("#newYork").addEventListener("click", nameCityNewYork);
-// start
-let currentTemp = 22;
-let currentWind = 0;
-let metric = true;
-let city = "kyiv";
-retrieveDataWeather(`q=${city}`);
-// unit = metric/iperial
-let setTempValue = document.querySelector("#units");
-setTempValue.addEventListener("click", setUnitTemperature);
-
-// searchCityName
-let cityInput = document.querySelector(".form-input");
-cityInput.addEventListener("submit", searchCityName);
-// currentCityName
-let currentCity = document.querySelector("#current-location-button");
-currentCity.addEventListener("click", currentLocation);
