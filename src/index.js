@@ -138,16 +138,20 @@ let currentCity = document.querySelector("#current-location-button");
 currentCity.addEventListener("click", currentLocation);
 
 // favorite navigator
-function nameCityKyiv() {
+function nameCityKyiv(event) {
+  event.preventDefault();
   retrieveDataWeather(`q=${document.querySelector("#kyiv").textContent}`);
 }
-function nameCityParis() {
+function nameCityParis(event) {
+  event.preventDefault();
   retrieveDataWeather(`q=${document.querySelector("#paris").textContent}`);
 }
-function nameCitySydney() {
+function nameCitySydney(event) {
+  event.preventDefault();
   retrieveDataWeather(`q=${document.querySelector("#sydney").textContent}`);
 }
-function nameCityNewYork() {
+function nameCityNewYork(event) {
+  event.preventDefault();
   retrieveDataWeather(`q=${document.querySelector("#newYork").textContent}`);
 }
 document.querySelector("#kyiv").addEventListener("click", nameCityKyiv);

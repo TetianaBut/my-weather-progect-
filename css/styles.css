@@ -52,10 +52,6 @@ a:hover {
 .Weather-temperature img {
   height: 64px;
   width: 64px;
-  position: relative;
-  top: -20px;
-  right: -10px;
-  margin-left: -20px;
 }
 .Weather-temperature strong {
   color: rgb(33, 33, 33);
@@ -65,9 +61,7 @@ a:hover {
 }
 .Weather-temperature a {
   font-size: 16px;
-  position: relative;
-  top: -34px;
-  left: -5px;
+  line-height: 1.7;
 }
 .weather-week {
   justify-content: center;
