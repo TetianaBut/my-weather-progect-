@@ -48,6 +48,10 @@ a:hover {
   font-size: 16px;
   padding: 0 10px;
 }
+.search-input::placeholder {
+  line-height: 16px;
+  color: rgba(39, 33, 66, 0.4);
+}
 
 .Weather-temperature img {
   height: 64px;
