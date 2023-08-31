@@ -99,6 +99,35 @@ function displayWeatherCondition(response) {
   }
   displayWind.innerHTML = ` ${Math.round(currentWind)}${unitWind}`;
 }
+
+function displayForecast() {
+  let forecastElement = document.querySelector(".weather-week");
+  let forecastHTML = "";
+  // let forecastHTML = `<div class="row weather-week">`;
+  // let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="col-2 weather-forecast-date">
+                  <div>${day}</div>
+                  <img
+                    src="./images/rainy_FILL0_wght400_GRAD0_opsz48.svg"
+                    alt="Rainy"
+                    width="42"
+                  />
+                  <div class="weather-forecast-temp">
+                    <span class="weather-forecast-max">26°</span>
+                    <span class="weather-forecast-min">22°</span>
+                  </div>
+                </div>
+              `;
+  });
+
+  // forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function retrieveDataWeather(cityName) {
   let apiKey = "36eeef5b0cb8b4f4de85392d5b87261c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${cityName}&appid=${apiKey}&units=${unit}`;
@@ -127,6 +156,7 @@ let currentWind = 0;
 let unit = "metric";
 let unitWind = "km/h";
 retrieveDataWeather("q=kyiv");
+displayForecast();
 // set Unit Temperature
 let setTempValue = document.querySelector("#units");
 setTempValue.addEventListener("click", setUnitTemperature);

@@ -34,7 +34,7 @@ a:hover {
   background: #1bbaaf;
   padding-left: 0;
   padding-right: 0;
-  border-radius: 20px;
+  border-radius: 18px;
   box-shadow: 3px 4px 10px rgba(37, 39, 89, 0.8);
 }
 .Weather-container {
@@ -43,7 +43,7 @@ a:hover {
   border-radius: 10px;
   box-shadow: 3px 4px 6px rgba(37, 39, 89, 0.3);
   margin: 20px auto;
-  max-width: 640px;
+  max-width: 600px;
   min-width: 300px;
   padding: 15px;
 }
@@ -56,11 +56,13 @@ a:hover {
   padding: 0 10px;
 }
 .search-input {
-  border-radius: 20px;
+  border-radius: 18px;
+  background: rgb(232, 240, 254);
   box-shadow: 3px 4px 10px rgba(37, 39, 89, 0.8);
 }
 .search-input:focus {
-  border-radius: 20px;
+  border-radius: 18px;
+  background: #e8f0fe;
   box-shadow: 3px 4px 10px rgba(37, 39, 89, 0.8);
 }
 .search-input::placeholder {
@@ -90,15 +92,18 @@ a:hover {
   /* display: block; */
   margin-top: 20px;
   text-align: center;
-  color: #000;
+  color: #454545;
 }
 .weather-week {
-  /* justify-content: center; */
+  justify-content: center;
 }
 .weather-forecast-date {
-  /* color: #878787; */
+  color: #454545;
   font-size: 16px;
-  opacity: 0.5;
+  border: 1px solid #dadde1;
+  padding: 0;
+
+  /* opacity: 0.5; */
   /* font-weight: 100;
   line-height: 28px; */
 }
