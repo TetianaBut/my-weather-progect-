@@ -2,7 +2,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 h1 {
-  color: #878787;
+  color: #454545;
   font-size: 24px;
   font-weight: 100;
   line-height: 28px;
@@ -13,7 +13,7 @@ ul {
   padding: 0;
 }
 li {
-  color: #7c7c7c;
+  color: #555555;
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
@@ -23,14 +23,22 @@ li::first-letter {
   text-transform: uppercase;
 }
 a {
-  color: rgb(89, 121, 246);
+  color: #a3b6ff;
   text-decoration: none;
   background: transparent;
 }
 a:hover {
   text-decoration: underline;
 }
+.location-btn {
+  background: #1bbaaf;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 20px;
+  box-shadow: 3px 4px 10px rgba(37, 39, 89, 0.8);
+}
 .Weather-container {
+  background-image: url("../images/fon_2023-08-30.jpg");
   border: 1px solid #dadde1;
   border-radius: 10px;
   box-shadow: 3px 4px 6px rgba(37, 39, 89, 0.3);
@@ -46,6 +54,14 @@ a:hover {
   display: inline;
   font-size: 16px;
   padding: 0 10px;
+}
+.search-input {
+  border-radius: 20px;
+  box-shadow: 3px 4px 10px rgba(37, 39, 89, 0.8);
+}
+.search-input:focus {
+  border-radius: 20px;
+  box-shadow: 3px 4px 10px rgba(37, 39, 89, 0.8);
 }
 .search-input::placeholder {
   line-height: 16px;
@@ -63,7 +79,10 @@ a:hover {
   line-height: 1;
 }
 .Weather-temperature a {
-  font-size: 16px;
+  color: #0da5b2;
+
+  font-size: 18px;
+  font-weight: 700;
   line-height: 1.7;
 }
 
