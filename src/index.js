@@ -69,6 +69,7 @@ function setUnitTemperature(event) {
   document.querySelector("#wind").innerHTML = ` ${Math.round(
     currentWind
   )}${unitWind}`;
+  getForecast(positionCityName);
 }
 
 function formatDayForecast(timestamp) {
@@ -104,7 +105,7 @@ function displayForecast(response) {
                   <div class="weather-forecast-temp">
                     <span class="weather-forecast-max">${Math.round(
                       forecastDay.temp.max
-                    )}°</span>
+                    )}°  </span>
                     <span class="weather-forecast-min">${Math.round(
                       forecastDay.temp.min
                     )}°</span>
@@ -119,8 +120,10 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
+  console.log(coordinates);
   let apiKey = "281450ec88936f4fa8ee9864682b49a0";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?${coordinates}&appid=${apiKey}&units=${unit}`;
+  //  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
   // console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
@@ -153,7 +156,9 @@ function displayWeatherCondition(response) {
     currentWind = currentWind * 3.6;
   }
   displayWind.innerHTML = ` ${Math.round(currentWind)}${unitWind}`;
-  getForecast(response.data.coord);
+  positionCityName = `lat=${response.data.coord.lat}&lon=${response.data.coord.lon}`;
+  // getForecast(response.data.coord);
+  getForecast(positionCityName);
 }
 
 function retrieveDataWeather(cityName) {
@@ -172,7 +177,7 @@ function searchCityName(event) {
 // current City Name
 function currentLocation(event) {
   function retrievePosition(position) {
-    let positionCityName = `lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
+    positionCityName = `lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
     retrieveDataWeather(positionCityName);
   }
   event.preventDefault();
@@ -184,6 +189,7 @@ let currentTemp = 0;
 let currentWind = 0;
 let unit = "metric";
 let unitWind = "km/h";
+let positionCityName = "";
 let apiKey = "36eeef5b0cb8b4f4de85392d5b87261c";
 retrieveDataWeather("q=kyiv");
 // displayForecast();
