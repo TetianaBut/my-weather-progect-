@@ -1,5 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.2);
 }
 h1 {
   color: #454545;
@@ -38,7 +39,7 @@ a:hover {
   box-shadow: 3px 4px 10px rgba(37, 39, 89, 0.8);
 }
 .Weather-container {
-  background-image: url("../images/fon_2023-08-30.jpg");
+  background-image: url("../images/Screenshot_3.jpg");
   border: 1px solid #dadde1;
   border-radius: 10px;
   box-shadow: 3px 4px 6px rgba(37, 39, 89, 0.3);
@@ -70,18 +71,21 @@ a:hover {
 }
 
 .Weather-temperature img {
-  height: 64px;
-  width: 64px;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  top: -20px;
+  right: -6px;
 }
 .Weather-temperature strong {
   color: rgb(33, 33, 33);
   font-size: 64px;
   font-weight: 400;
   line-height: 1;
+  /* text-shadow: 5px 3px 4px rgba(0, 0, 0, 0.2); */
 }
 .Weather-temperature a {
   color: #0da5b2;
-
   font-size: 18px;
   font-weight: 700;
   line-height: 1.7;
@@ -89,9 +93,10 @@ a:hover {
 
 .weather-forecast {
   /* display: block; */
-  margin-top: 20px;
+  margin-bottom: 15px;
   text-align: center;
   color: #454545;
+  /* text-shadow: 5px 3px 4px rgba(0, 0, 0, 0.2); */
 }
 .weather-week {
   justify-content: center;
