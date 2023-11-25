@@ -5,6 +5,8 @@ function displaytDate() {
   let hours = nowDate.getHours();
   let minutes = nowDate.getMinutes();
   let day = nowDate.getDay();
+  let date = nowDate.getDate();
+  let month = nowDate.getMonth();
 
   let days = [
     "Sunday",
@@ -15,31 +17,30 @@ function displaytDate() {
     "Friday",
     "Saturday",
   ];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   if (hours < 10) {
     hours = `0${hours}`;
   }
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  return `${days[day]}  ${hours}:${minutes}`;
+  return `It is ${days[day]},  ${date}.${months[month]} ${hours}:${minutes} `;
 }
-// let date = nowDate.getDate();
-// let month = nowDate.getMonth();
+
 // let year = nowDate.getFullYear();
-// let months = [
-//   "January",
-//   "February",
-//   "March",
-//   "April",
-//   "May",
-//   "June",
-//   "July",
-//   "August",
-//   "September",
-//   "October",
-//   "November",
-//   "December",
-// ];
 
 // document.querySelector(
 //   "#input-time"
@@ -93,8 +94,11 @@ function displayForecast(response) {
     if (index < 5) {
       forecastHTML =
         forecastHTML +
-        ` <div class="col-2 weather-forecast-date">
-                  <div>${formatDayForecast(forecastDay.dt)}</div>
+        ` <div class="col-2 p-1">
+         <div class="weather-forecast-date">
+                  <div class="opacity-75">${formatDayForecast(
+                    forecastDay.dt
+                  )}</div>
                   <img
                     src="https://openweathermap.org/img/wn/${
                       forecastDay.weather[0].icon
@@ -111,6 +115,7 @@ function displayForecast(response) {
                     )}°</span>
                   </div>
                 </div>
+                 </div>
               `;
     }
   });
@@ -139,7 +144,7 @@ function displayWeatherCondition(response) {
   let displayClouds = document.querySelector("#clouds");
   let displayHumidity = document.querySelector("#humidity");
   let displayWind = document.querySelector("#wind");
-  displayCity.innerHTML = `${response.data.name} ${response.data.sys.country}`;
+  displayCity.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   displayDate.innerHTML = displaytDate();
   displayDescript.innerHTML = `${response.data.weather[0].description}`;
   displayIcons.setAttribute(

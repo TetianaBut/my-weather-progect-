@@ -15,11 +15,13 @@
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="clouds">
-      <div class="weather-container">
+    <div class="container">
+      <div class="Weather-container">
         <header>
           <ul class="city-favorites">
-            <li class="item-city-favorites" id="kyiv"><a href="#">Kyiv</a></li>
+            <li class="item-city-favorites" id="kyiv">
+              <a href="#">Kyiv</a>
+            </li>
             <li class="item-city-favorites" id="paris">
               <a href="#">Paris</a>
             </li>
@@ -48,14 +50,14 @@
               <div class="col-3">
                 <input
                   type="submit"
-                  class="btn w-100 location-btn"
+                  class="btn btn-primary w-100 location-btn"
                   value="Search"
                 />
               </div>
               <div class="col-4">
                 <button
                   type="button"
-                  class="btn w-100 location-btn"
+                  class="btn btn-primary w-100 location-btn"
                   id="current-location-button"
                 >
                   Current location
@@ -63,41 +65,32 @@
               </div>
             </div>
           </form>
-          <div class="ms-5 opacity-75">
+          <div>
             <h1>Kyiv</h1>
-            <div class="opacity-75 mt-1">
-              <em id="input-time"> Monday 19:20, 8 septebry </em>
-            </div>
+            <ul>
+              <li id="input-time">Monday 19:20</li>
+              <li id="description">Rainy</li>
+            </ul>
           </div>
-          <div class="row align-items-center">
-            <div class="col-7 d-flex align-items-center justify-content-center">
-              <img
-                class="weather-icon"
-                id="weather-icon"
-                src=""
-                alt=""
-                width="100"
-              />
-              <div class="Weather-temperature d-flex align-items-start">
-                <strong class="opacity-75" id="setTempValue"></strong>
-                <a id="units" href="#">°C</a>
-              </div>
+          <div class="row">
+            <div class="col-7 d-flex Weather-temperature">
+              <img id="weather-icon" src="" alt="" width="64" />
+              <strong id="setTempValue"></strong>
+              <a id="units" href="#">°C</a>
             </div>
             <div class="col-5">
               <ul>
-                <li id="description">Rainy</li>
                 <li>Precipitation : <span id="clouds"></span>%</li>
                 <li>Humidity : <span id="humidity"></span>%</li>
                 <li>Wind : <span id="wind"></span></li>
               </ul>
             </div>
           </div>
-
           <section class="weather-forecast" id="forecast">
             <div class="row weather-week">
-              <div class="col-2 p-1">
+              <div class="col">
                 <div class="weather-forecast-date">
-                  <div class="opacity-75">Tue</div>
+                  <div>Tue</div>
                   <img src="" alt="" width="42" />
                   <div class="weather-forecast-temp">
                     <span class="weather-forecast-max"></span>
